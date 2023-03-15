@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoaching.Inheritance_Interfaces
+namespace DevCoaching.Inheritance_Interfaces.After
 {
 
     public interface ISteerable
@@ -12,28 +12,20 @@ namespace DevCoaching.Inheritance_Interfaces
         void Steer(decimal angle);
     }
 
-    public abstract class Vehicle2
+    public abstract class Vehicle
     {
         public decimal LengthMetres { get; set; }
         public decimal WidthMetres { get; set; }
-        
+
         public void ExampleSharedFunction()
         {
 
         }
 
-        
+
     }
 
-    public class Car2 : Vehicle2, ISteerable
-    {
-        public void Steer(decimal angle)
-        {
-            
-        }
-    }
-
-    public class Bus2 : Vehicle2, ISteerable
+    public class Car2 : Vehicle, ISteerable
     {
         public void Steer(decimal angle)
         {
@@ -41,9 +33,17 @@ namespace DevCoaching.Inheritance_Interfaces
         }
     }
 
-    public class Train2 : Vehicle2
+    public class Bus2 : Vehicle, ISteerable
     {
-        
+        public void Steer(decimal angle)
+        {
+
+        }
+    }
+
+    public class Train2 : Vehicle
+    {
+
     }
 
     public class VehicleExample2
@@ -57,7 +57,7 @@ namespace DevCoaching.Inheritance_Interfaces
             var vehicles = new List<ISteerable>();
             vehicles.Add(car);
             vehicles.Add(bus);
-            
+
 
             foreach (var vehicle in vehicles)
             {

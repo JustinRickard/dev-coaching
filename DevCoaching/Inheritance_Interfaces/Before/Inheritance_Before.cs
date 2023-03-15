@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoaching.Inheritance_Interfaces
+namespace DevCoaching.Inheritance_Interfaces.Before
 {
     public abstract class Vehicle
     {
