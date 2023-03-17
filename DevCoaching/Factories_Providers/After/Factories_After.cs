@@ -29,9 +29,14 @@ namespace DevCoaching.Factories_Providers.After
         Train,
     }
 
-    public class ExampleClass
+    public interface IVehicleFactory
     {
-        private Vehicle CreateVehicle(VehicleType type)
+        Vehicle Create(VehicleType type);
+    }
+
+    public class VehicleFactory : IVehicleFactory
+    {
+        public Vehicle Create(VehicleType type)
         {
             Vehicle vehicle;
 
@@ -48,6 +53,24 @@ namespace DevCoaching.Factories_Providers.After
                     break;
                 default: throw new Exception("Invalid Type");
             }
+
+            // extra processing
+            return vehicle;
+        }
+    }
+
+    public class ExampleClass
+    {
+        private readonly IVehicleFactory _vehicleFactory;
+
+        public ExampleClass(IVehicleFactory vehicleFactory)
+        {
+            _vehicleFactory = vehicleFactory;
+        }
+
+        private Vehicle CreateVehicle(VehicleType type)
+        {
+            var vehicle = _vehicleFactory.Create(type);
 
             Service(vehicle);
 

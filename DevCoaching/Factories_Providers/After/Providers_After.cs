@@ -42,36 +42,55 @@ namespace DevCoaching.Factories_Providers.After
         WorldPay
     }
 
-    public class ExamplePaymentClass
+    public interface IPaymentProviderProvider
+    {
+        IPaymentProvider Provide(PaymentProviderType type);
+    }
+
+    public class PaymentProviderProvider
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ExamplePaymentClass(
-            IServiceProvider serviceProvider)
+        public PaymentProviderProvider(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
-        public void MakePayment(PaymentProviderType type, decimal amount)
+        public IPaymentProvider Provide(PaymentProviderType type)
         {
-            IPaymentProvider paymentProvider;
-
             switch (type)
             {
                 case PaymentProviderType.Stripe:
-                    paymentProvider = GetService<IStripePaymentProvider>();
-                    break;
+                    return GetService<IStripePaymentProvider>();
                 case PaymentProviderType.WorldPay:
-                    paymentProvider = GetService<IWorldPayPaymentProvider>();
-                    break;
+                    return GetService<IWorldPayPaymentProvider>();
                 default:
                     throw new Exception("Invalid Provider");
             }
-
-            ProcessOrder(paymentProvider);
         }
 
         protected T GetService<T>() => (T)_serviceProvider.GetService(typeof(T));
+    }
+
+    public class ExamplePaymentClass
+    {
+        private readonly IPaymentProviderProvider _provider;
+
+        public ExamplePaymentClass(IPaymentProviderProvider provider)
+        {
+            _provider = provider;
+        }
+
+        
+
+        public void MakePayment(PaymentProviderType type, decimal amount)
+        {
+            var paymentProvider = _provider.Provide(type);
+            ProcessOrder(paymentProvider);
+            // Extra
+        }
+
+        
 
         public void ProcessOrder(IPaymentProvider paymentProvider)
         {
