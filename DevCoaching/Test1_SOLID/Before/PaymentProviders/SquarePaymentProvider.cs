@@ -8,8 +8,16 @@ namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
 {
     public class SquarePaymentProvider
     {
-        public void MakePayment(decimal amount)
+        public void MakePayment(SquareOrder order)
         {
         }
+    }
+
+    public class SquareOrder
+    {
+        public string Id { get; set; }
+        public string Sku { get; set; }
+        public decimal Amount { get; set; }
+        public string SquareCustomField { get; set; }
     }
 }

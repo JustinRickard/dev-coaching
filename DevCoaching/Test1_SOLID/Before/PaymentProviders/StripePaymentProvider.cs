@@ -8,7 +8,7 @@ namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
 {
     public class StripePaymentProvider
     {
-        public void MakePayment(decimal amount)
+        public void MakePayment(StripeOrder order)
         {
         }
     }
@@ -18,5 +18,6 @@ namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
         public string Id { get; set; }
         public string Sku { get; set; }
         public decimal Amount { get; set; }
+        public string StripeCustomField { get; set; }
     }
 }

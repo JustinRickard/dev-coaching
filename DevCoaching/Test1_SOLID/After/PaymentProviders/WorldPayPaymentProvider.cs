@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
+namespace DevCoaching.Test1_SOLID.After.PaymentProviders
 {
     public class WorldPayPaymentProvider
     {

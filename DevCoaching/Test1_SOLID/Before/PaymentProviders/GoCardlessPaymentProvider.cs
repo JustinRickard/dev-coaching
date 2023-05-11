@@ -8,8 +8,16 @@ namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
 {
     public class GoCardlessPaymentProvider
     {
-        public void MakePayment(decimal amount)
+        public void MakePayment(GoCardlessOrder order)
         {
         }
+    }
+
+    public class GoCardlessOrder
+    {
+        public string Id { get; set; }
+        public string Sku { get; set; }
+        public decimal Amount { get; set; }
+        public string GoCardlessCustomField { get; set; }
     }
 }

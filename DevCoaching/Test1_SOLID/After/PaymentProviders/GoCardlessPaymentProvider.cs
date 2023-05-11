@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevCoaching.Test1_SOLID.Before.PaymentProviders
+namespace DevCoaching.Test1_SOLID.After.PaymentProviders
 {
-    public class WorldPayPaymentProvider
+    public class GoCardlessPaymentProvider
     {
-        public void MakePayment(WorldPayOrder order)
+        public void MakePayment(GoCardlessOrder order)
         {
         }
     }
 
-    public class WorldPayOrder
+    public class GoCardlessOrder
     {
         public string Id { get; set; }
         public string Sku { get; set; }
         public decimal Amount { get; set; }
-        public string WorldPayCustomField { get; set; }
+        public string GoCardlessCustomField { get; set; }
     }
 }

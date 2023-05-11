@@ -1,6 +1,6 @@
 ﻿using DevCoaching.Test1_SOLID.Before.PaymentProviders;
 
-namespace DevCoaching.Test1_SOLID.Before
+namespace DevCoaching.Test1_SOLID.After
 {
     public class PaymentService
     {
@@ -57,7 +57,7 @@ namespace DevCoaching.Test1_SOLID.Before
                     if (amount > 4_000) throw new Exception("Order can't be above £4,000");
                     break;
                 default:
-                    throw new Exception("Invalid provider type");
+                    throw new Exception("Invalid payment type");
             }
         }
 
