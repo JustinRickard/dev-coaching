@@ -20,7 +20,7 @@ namespace DevCoaching.Test1_SOLID.After
             var order = _orderFactory.Create(type, amount);
             paymentProvider.ValidateOrder(order);
             paymentProvider.MakePayment(order);
-            _logger.Log($"Payment made to Stripe for {amount} to {type}");
+            _logger.Log($"Payment made for {amount} to {type}");
             
         }
     }
