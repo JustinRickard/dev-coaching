@@ -10,9 +10,4 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tuples\After_Tuple\" />
-    <Folder Include="Tuples\After_ValueTuple\" />
-  </ItemGroup>
-
 </Project>
