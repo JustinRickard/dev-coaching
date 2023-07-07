@@ -8,12 +8,18 @@ namespace DevCoaching.Test1_SOLID.After.PaymentProviders
 {
     public class WorldPayPaymentProvider
     {
-        public void MakePayment(WorldPayOrder order)
+        public void MakePayment(IOrder order)
         {
         }
-    }
+        public void ValidateOrder(IOrder order)
+        {
+            if (order.Amount > 1_000)
+                throw new Exception("Order can't be above £1,000");
+        }
 
-    public class WorldPayOrder
+        
+    }
+    public class WorldPayOrder : Order
     {
         public string Id { get; set; }
         public string Sku { get; set; }

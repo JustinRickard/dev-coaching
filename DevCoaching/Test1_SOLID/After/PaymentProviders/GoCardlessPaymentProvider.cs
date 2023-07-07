@@ -8,12 +8,17 @@ namespace DevCoaching.Test1_SOLID.After.PaymentProviders
 {
     public class GoCardlessPaymentProvider
     {
-        public void MakePayment(GoCardlessOrder order)
+        public void MakePayment(IOrder order)
         {
+        }
+        public void ValidateOrder(IOrder order)
+        {
+            if (order.Amount > 4_000)
+                throw new Exception("Order can't be above £4,000");
         }
     }
 
-    public class GoCardlessOrder
+    public class GoCardlessOrder : Order
     {
         public string Id { get; set; }
         public string Sku { get; set; }

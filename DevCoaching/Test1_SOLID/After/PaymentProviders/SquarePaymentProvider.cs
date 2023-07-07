@@ -8,12 +8,17 @@ namespace DevCoaching.Test1_SOLID.After.PaymentProviders
 {
     public class SquarePaymentProvider
     {
-        public void MakePayment(SquareOrder order)
+        public void MakePayment(IOrder order)
         {
+        }
+        public void ValidateOrder(IOrder order)
+        {
+            if (order.Amount > 3_000)
+                throw new Exception("Order can't be above £3,000");
         }
     }
 
-    public class SquareOrder
+    public class SquareOrder : Order
     {
         public string Id { get; set; }
         public string Sku { get; set; }
