@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevCoaching.Actions.After
+﻿namespace DevCoaching.Actions.After
 {
 	public class Order
 	{
@@ -21,16 +15,32 @@ namespace DevCoaching.Actions.After
 			{ 2, DoSomething2 }
 		};
 
-		public void Process(Order order)
+		private readonly Dictionary<int, Func<decimal, decimal>> _doSomethingStatusToFunctions = new()
+		{
+			{ 1, DoSomethingFunc1 },
+			{ 2, DoSomethingFunc2 }
+		};
+
+		public void Process(Order order, Action<decimal> doSomethingWeird, Func<decimal, decimal> doSomeFunc)
 		{
 			// Do something 1
 
-			_doSomethingStatusToActions[order.Status](order.Amount);
+			doSomethingWeird(
+				doSomeFunc(order.Amount));
 
 			// Do something 3
 		}
 
 		private static void DoSomething1(decimal amount) { }
 		private static void DoSomething2(decimal amount) { }
+
+		private static decimal DoSomethingFunc1(decimal amount)
+		{
+			return 7; }
+
+		private static decimal DoSomethingFunc2(decimal amount)
+		{
+			return 8;
+		}
 	}
 }
